@@ -1,97 +1,77 @@
-#!/usr/bin/env python
-import urllib
+#!/usr/bin/env python3.6
+import urllib.request
 import json
- 
+
 #url = "https://gdata.youtube.com/feeds/api/videos?q=Python&key=AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU&orderby=viewCount&max-results=50&v=2&alt=json"
 
 #url = "https://www.googleapis.com/youtube/v3/activities?part=snippet&channelId=UC_x5XG1OV2P6uZZ5FSM9Ttw&key=AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU&maxResults=25"
 
-chid = raw_input("Enter the channel id ")
+chid = input("Enter the channel id ")
+API_KEY = 'AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU'
+url = "https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id="+chid+"&key="+API_KEY+""
 
-url = "https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id="+chid+"&key=AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU"
+def pstar():
+	for i in range(100):
+		print("*", end='')
+	print("")
 
-
-feed = urllib.urlopen(url)
+feed = urllib.request.urlopen(url)
 feed = feed.read()
 feed_json = json.loads(feed)
  
-#print(feed_json)
 
-#  print(feed_json['kind'])
-
-
-#print(feed_json['items'])
+print("Channel Name: ",feed_json['items'][0]['snippet']['title'])
+print("Description: ",feed_json['items'][0]['snippet']['description'])
 
 
-print(feed_json['items'][0]['snippet']['title'])
-print(feed_json['items'][0]['snippet']['description'])
+"""
 
-#for feed in feed_json['feed']['entry']:
-#	Video_title = feed['title']['$t']
-#    	print Video_title
+# FOR INDIA 
 
-url1 = "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=IN&maxResults=10&key=AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU"
-
-trends = urllib.urlopen(url1)
+url1 = "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=IN&maxResults=10&key="+API_KEY+""
+trends = urllib.request.urlopen(url1)
 trends = trends.read()
 trends_json = json.loads(trends)
-
-
 print("")
-print("")
-print("***************************************************************************************")
+pstar()
 print("YOUTUBE TRENDING VIDEOS IN INDIA")
-print("***************************************************************************************")
-
+pstar()
 for i in range(10):
 	print("")
 	print(trends_json['items'][i]['snippet']['title'])
-        print(trends_json['items'][i]['statistics']['viewCount']+" Views" )
+	print(trends_json['items'][i]['statistics']['viewCount']+" Views")
 
-#print(trends_json['items'][0]['snippet']['title'])
-#print(trends_json['items'][1]['snippet']['title'])
+# FOR UK
 
-
-ukurl="https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=GB&maxResults=10&key=AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU"
-
-trendsUK = urllib.urlopen(ukurl)
+ukurl="https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=GB&maxResults=10&key="+API_KEY+""
+trendsUK = urllib.request.urlopen(ukurl)
 trendsUK = trendsUK.read()
 trends_json = json.loads(trendsUK)
-
-
 print("")
-print("")
-print("***************************************************************************************")
+pstar()
 print("YOUTUBE TRENDING VIDEOS IN UK")
-print("***************************************************************************************")
-
+pstar()
 for i in range(10):
         print("")
         print(trends_json['items'][i]['snippet']['title'])
         print(trends_json['items'][i]['statistics']['viewCount']+" Views" )
 
 
+# FOR USA
 
-
-
-#usaurl="https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&chart=mostPopular&regionCode=US&maxResults=10&key=AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU"
-
-usaurl="https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=US&maxResults=10&key=AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU"
-
-trendsUSA = urllib.urlopen(usaurl)
+usaurl="https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=US&maxResults=10&key="+API_KEY+""
+trendsUSA = urllib.request.urlopen(usaurl)
 trendsUSA = trendsUSA.read()
 trends_USA_json = json.loads(trendsUSA)
-
-
 print("")
-print("")
-print("***************************************************************************************")
+pstar()
 print("YOUTUBE TRENDING VIDEOS IN USA")
-print("***************************************************************************************")
-
+pstar()
 for i in range(10):
-        print("")
-        print(trends_USA_json['items'][i]['snippet']['title'])
+	print("")
+	print(trends_USA_json['items'][i]['snippet']['title'])
 	print(trends_USA_json['items'][i]['statistics']['viewCount']+" Views" )
 
+
+"""
 
