@@ -50,10 +50,10 @@ for key in countrycode.keys():
 	print(key)
 code=raw_input("Select the country from above ")
 regioncode=countrycode.get(code,"Invalid Country")
-#print(regioncode)
 
+API_KEY='AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU'
 
-url1 = "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode="+regioncode+"&maxResults=20&key=AIzaSyDkMyxlITYIZ7C_eGjfpF5RoeJsOoJsOFU"
+url1 = "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode="+regioncode+"&maxResults=20&key="+API_KEY+""
 
 trends = urllib.urlopen(url1)
 trends = trends.read()
@@ -69,10 +69,7 @@ print("*************************************************************************
 for i in range(5):
 	print("")
 	print(trends_json['items'][i]['snippet']['title'])
-        # print(trends_json['items'][i]['statistics']['viewCount']+" Views" )
 	views= int(trends_json['items'][i]['statistics']['viewCount'])
 	Viewformat(views)
 	print("https://www.youtube.com/watch?v="+trends_json['items'][i]['id'])
 
-#print(trends_json['items'][0]['snippet']['title'])
-#print(trends_json['items'][1]['snippet']['title'])
