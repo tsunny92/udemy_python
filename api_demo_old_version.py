@@ -22,19 +22,19 @@ print(feed_json['items'][0]['snippet']['description'])
 
 
 def Viewformat(num):
-	if num >= 1000 and num < 1000000:
-		div= num / 1000
-		print(str(div)+"K Views")
-	elif num >= 1000000 and num < 1000000000:
-		div = num / float(1000000)
-		div = round(div,1)
-		print(str(div)+"M Views")
-	elif num >= 1000000000:
-		div = num / float(1000000000)
+    if num >= 1000 and num < 1000000:
+        div= num / 1000
+        print(str(div)+"K Views")
+    elif num >= 1000000 and num < 1000000000:
+        div = num / float(1000000)
+        div = round(div,1)
+        print(str(div)+"M Views")
+    elif num >= 1000000000:
+        div = num / float(1000000000)
                 div = round(div,1)
                 print(str(div)+"B Views")
-	else:
-		pass
+    else:
+        pass
 
 
 countrycode={
@@ -47,7 +47,7 @@ countrycode={
                 'Pakistan':'PK'
              }
 for key in countrycode.keys():
-	print(key)
+    print(key)
 code=raw_input("Select the country from above ")
 regioncode=countrycode.get(code,"Invalid Country")
 
@@ -67,9 +67,9 @@ print("Youtube Trending videos in "+code+"")
 print("***************************************************************************************")
 
 for i in range(5):
-	print("")
-	print(trends_json['items'][i]['snippet']['title'])
-	views= int(trends_json['items'][i]['statistics']['viewCount'])
-	Viewformat(views)
-	print("https://www.youtube.com/watch?v="+trends_json['items'][i]['id'])
+    print("")
+    print(trends_json['items'][i]['snippet']['title'])
+    views= int(trends_json['items'][i]['statistics']['viewCount'])
+    Viewformat(views)
+    print("https://www.youtube.com/watch?v="+trends_json['items'][i]['id'])
 
